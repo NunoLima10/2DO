@@ -49,9 +49,9 @@ class TodoAdapter(private val Todos:MutableList<TodoItem>)
         Todos.add(todo)
         notifyItemInserted(Todos.size - 1)
     }
-    fun deleteTodo(todo:TodoItem){
-        Todos.remove(todo)
-        notifyDataSetChanged()
+    fun deleteTodo(position: Int){
+        Todos.removeAt(position)
+        notifyItemRemoved(position)
     }
 
     override fun getItemCount(): Int {

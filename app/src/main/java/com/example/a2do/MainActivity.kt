@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnAddToDo: Button
     private lateinit var editText: EditText
     private lateinit var radioGroup: RadioGroup
+    private lateinit var swipeToDeleteCallback: SwipeToDeleteCallback
+    private lateinit var itemTouchHelper: ItemTouchHelper
 
     private fun getPriority():Int{
         when(radioGroup.checkedRadioButtonId){
@@ -33,15 +36,27 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        todoList = ArrayList()
+        todoAdapter = TodoAdapter(todoList)
+        recyclerView.adapter = todoAdapter
+
+        swipeToDeleteCallback = object :SwipeToDeleteCallback(){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position =  viewHolder.adapterPosition
+                todoAdapter.deleteTodo(position)
+
+            }
+        }
+        itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+
+
         btnAddToDo = findViewById(R.id.btnAddToDo)
         editText = findViewById(R.id.editText)
         radioGroup = findViewById(R.id.radioGroup)
 
 
-        todoList = ArrayList()
 
-        todoAdapter = TodoAdapter(todoList)
-        recyclerView.adapter = todoAdapter
 
 
         btnAddToDo.setOnClickListener {
