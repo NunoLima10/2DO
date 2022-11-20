@@ -11,36 +11,38 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/radioButtons"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <RadioGroup
-        android:id="@+id/radioButtons"
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddToDo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
-            android:id="@+id/radioButtonRed"
+            android:id="@+id/radioButtonUrgent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Red" />
+            android:text="@string/urgent" />
 
         <RadioButton
-            android:id="@+id/radioButtonYellow"
+            android:id="@+id/radioButtonMedium"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Yellow" />
+            android:text="@string/medium" />
 
         <RadioButton
-            android:id="@+id/radioButtonGreen"
+            android:id="@+id/radioButtonLow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Green" />
+            android:text="@string/low"
+            android:checked="true"/>
     </RadioGroup>
 
     <EditText
@@ -49,17 +51,18 @@
         android:layout_height="wrap_content"
         android:hint="@string/edit_text_hint"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnAddToDo"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp"/>
 
     <Button
         android:id="@+id/btnAddToDo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
         android:text="@string/add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

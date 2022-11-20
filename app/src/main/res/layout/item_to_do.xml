@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="50dp"
     android:layout_margin="10dp">
 
     <CheckBox
@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cbTodoItem"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_todo_priority"
+        app:srcCompat="@drawable/ic_todo_priority_urgent"
         android:layout_marginRight="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

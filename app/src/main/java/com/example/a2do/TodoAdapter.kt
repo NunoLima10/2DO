@@ -1,5 +1,6 @@
 package com.example.a2do
 
+import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,11 +22,36 @@ class TodoAdapter(private val Todos:MutableList<TodoItem>)
         return TodoViewHolder(view)
     }
 
+    private fun toggleScratched(cbTodoItem:CheckBox){
+        if (cbTodoItem.isChecked){
+            cbTodoItem.paintFlags = cbTodoItem.paintFlags or STRIKE_THRU_TEXT_FLAG
+        }
+        else{
+            cbTodoItem.paintFlags = cbTodoItem.paintFlags and STRIKE_THRU_TEXT_FLAG.inv()
+        }
+    }
+
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         val todo = Todos[position]
-        holder.ivPriority.setImageResource(todo.priority_image)
-        holder.cbTodoItem.text = todo.title
-        holder.cbTodoItem.isChecked = todo.isChecked
+        holder.apply {
+            cbTodoItem.text = todo.title
+            cbTodoItem.isChecked = todo.isChecked
+            ivPriority.setImageResource(todo.priority_image)
+            
+            toggleScratched(cbTodoItem)
+            cbTodoItem.setOnCheckedChangeListener { _, b ->
+                toggleScratched(cbTodoItem)
+                todo.isChecked = b
+            }
+        }
+    }
+    fun addTodo(todo:TodoItem){
+        Todos.add(todo)
+        notifyItemInserted(Todos.size - 1)
+    }
+    fun deleteTodo(todo:TodoItem){
+        Todos.remove(todo)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
