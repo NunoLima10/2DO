@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">2DO</string>
     <string name="add">Add</string>
-    <string name="edit_text_hint">Input to do text</string>
+    <string name="edit_text_hint"> Input to do text</string>
     <string name="low">Low</string>
-    <string name="medium">medium</string>
+    <string name="medium">Medium</string>
     <string name="urgent">Urgent</string>
 </resources>
